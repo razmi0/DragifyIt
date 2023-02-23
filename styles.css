@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(135deg, #c3a3f1, #6414e9);
+}
+
+.playground {
+    width: 100vw;
+    height: 100vh;
+    position : relative;
+}
+.draggable-item {
+    position : absolute;
+    background-color: aliceblue;
+    font-size: 1.6em;
+    width: 7em; height: 7em;
+    transform : translate(-50%,-50%);
+    left : 50%;
+    top : 50%;
+    display : grid;
+    place-items: center ;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 0.3em;
+    cursor: move;
+
+}
