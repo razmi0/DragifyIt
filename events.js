@@ -5,59 +5,62 @@ let events = {
     mouse: {
         down : "mousedown",
         move : "mousemove",
-        up : "mouseup"        
+        up : "mouseup"
     },
     touch: {
         down : "touchstart",
         up : "touchend",
         move : "touchmove"
-            
     }
 };
 
-export function startMoving(draggables, deviceType, i) {
+export function startMoving(draggables, deviceType) {
     // start (mouse down / touch start)
-    draggables[i].element.addEventListener(events[deviceType].down , (e) => {
-
-        e.preventDefault();
-        // initial X Y ptn
-        draggables[i].initial_X = !isTouchDevice() ? e.clientX : e.touches[0].clientX;
-        draggables[i].initial_Y = !isTouchDevice() ? e.clientY : e.touches[0].clientY;
-        //start movement
-        draggables[i].moving = true;
-
-    })
-}
-
-export function moving (draggables, deviceType, i) {
-    //move
-    draggables[i].element.addEventListener(events[deviceType].move, (e) => {
-        // movement is true => set top and left to new X Y while removing offsets
-        if(draggables[i].moving){
+    for (const item of draggables){
+        item.element.addEventListener(events[deviceType].down , (e) => {
             e.preventDefault();
-            let new_X = 0;
-            let new_Y = 0;
-            new_X = !isTouchDevice() ? e.clientX : e.touches[0].clientX;
-            new_Y = !isTouchDevice() ? e.clientY : e.touches[0].clientY;
-            draggables[i].element.style.top = draggables[i].element.offsetTop - (draggables[i].initial_Y - new_Y) + "px";
-            draggables[i].element.style.left = draggables[i].element.offsetLeft - (draggables[i].initial_X - new_X) + "px";
-            draggables[i].initial_X = new_X;
-            draggables[i].initial_Y = new_Y;
-            
-
-        }
-    });
+            // initial X Y ptn
+            item.initial_X = !isTouchDevice() ? e.clientX : e.touches[0].clientX;
+            item.initial_Y = !isTouchDevice() ? e.clientY : e.touches[0].clientY;
+            //start movement
+            item.moving = true;
+            if (getComputedStyle(item.element,null).getPropertyValue("background-color") === "rgb(255, 255, 255)") {
+                item.element.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            }
+        })
+    }
 }
 
-export function endMoving (draggables, deviceType, stopMovement, i) {
+export function moving (draggables, deviceType) {
+    
+    for (const item of draggables){
+
+        item.element.addEventListener(events[deviceType].move, (e) => {
+            // movement is true => set top and left to new X Y while removing offsets
+            if( item.moving ) {
+                e.preventDefault();
+                let new_X = 0;
+                let new_Y = 0;
+                new_X = !isTouchDevice() ? e.clientX : e.touches[0].clientX;
+                new_Y = !isTouchDevice() ? e.clientY : e.touches[0].clientY;
+                item.element.style.top = item.element.offsetTop - (item.initial_Y - new_Y) + "px";
+                item.element.style.left = item.element.offsetLeft - (item.initial_X - new_X) + "px";
+                item.initial_X = new_X;
+                item.initial_Y = new_Y;
+            }
+        });
+    }
+}
+
+export function endMoving (draggables, deviceType, stopMovement) {
     //mouseup / touch end
-    draggables[i].element.addEventListener(events[deviceType].up , (stopMovement = (e) => {
-        draggables[i].moving = false;
-    }));
-
-    draggables[i].element.addEventListener("mouseleave", stopMovement);
-
-    draggables[i].element.addEventListener(events[deviceType].up, (e) => {
-        draggables[i].moving = false;
-    });
+    for (const item of draggables){
+        item.element.addEventListener(events[deviceType].up , (stopMovement = (e) => {
+            item.moving = false;
+        }));
+        item.element.addEventListener("mouseleave", stopMovement);
+        item.element.addEventListener(events[deviceType].up, (e) => {
+            item.moving = false;
+        });
+    }
 }

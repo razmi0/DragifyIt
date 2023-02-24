@@ -3,7 +3,7 @@
 body {
     padding: 0;
     margin: 0;
-    background: linear-gradient(135deg, #c3a3f1, #6414e9);
+    background-color: #212121;
 }
 
 .playground {
@@ -11,18 +11,24 @@ body {
     height: 100vh;
     position : relative;
 }
-.draggable-item {
+.draggable-item  {
     position : absolute;
-    background-color: aliceblue;
-    font-size: 1.6em;
-    width: 7em; height: 7em;
-    transform : translate(-50%,-50%);
+    background-color: #ffffff;
+    font-size: 0.8em;
+    min-width: 3.5em; width: 3.5em;
+    min-height: 3.5em; height: 3.5em;
     left : 50%;
     top : 50%;
-    display : grid;
-    place-items: center ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     font-family: 'Montserrat', sans-serif;
-    border-radius: 0.3em;
-    cursor: move;
-
+    border-radius: 50%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    /* transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55); */
+}
+.draggable-item:hover {
+    transform: scale(1.1);
 }
