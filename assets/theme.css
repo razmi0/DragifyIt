@@ -1,0 +1,34 @@
+:root {
+  --bg-color: #e8e8e8;
+  --text-color:var(--bg-color);
+  /* #212121 */
+}
+/* Not checked */
+.toggle {
+  float: right;
+  background-color: rgb(251, 237, 182);
+  border-radius: 25% / 50%;
+  padding: 0.25em;
+  width: 6em;
+  appearance: none;
+  cursor: pointer;
+}
+.toggle:before {
+  display: block;
+  background-color: rgb(244, 202, 37);
+  border-radius: 50%;
+  content: "";
+  width: 2.5em;
+  height: 2.5em;
+  transition: 0.3s;
+}
+
+/* Checked */
+.toggle:checked {
+  background-color: rgb(4, 52, 73);
+}
+
+.toggle:checked:before {
+  transform: translateX(3em);
+  background-color: rgb(37, 182, 244);
+}

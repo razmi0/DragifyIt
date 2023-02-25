@@ -4,20 +4,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <script type="module" src="main.js" defer></script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="assets/theme.css" />
+    <link rel="stylesheet" href="assets/styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <header>
+        <input id="theme" class="toggle" type="checkbox" name="theme">
+  </header>
   <body>
-    <section>
-      <button class="add -commun -noborder">+</button>
-      <button class="delete -commun -noborder">-</button>
-      <button class="menu -commun -noborder">
-        <span class="lines line-1"></span>
-        <span class="lines line-2"></span>
-        <span class="lines line-3"></span>
+    <nav class = "menuButtons">
+      <button class="add -commun -flex -noborder -noSelectText">
+        <span class="lines -line2 -lineRotate"></span>
+        <span class="lines -line2 "></span>
       </button>
-    </section>
-    <div class="playground" id="playground"></div>
+      <button class="delete -commun -flex -noborder -noSelectText">
+        <span class="lines -line2 "></span>
+      </button>
+      <button class="menu -commun -flex -noborder -noSelectText">
+        <span class="lines -line1 "></span>
+        <span class="lines -line2 "></span>
+        <span class="lines -line3 "></span>
+      </button>
+    </nav>
+
+    <section class="playground"></section>
   </body>
 </html>
+
