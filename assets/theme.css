@@ -1,11 +1,18 @@
+
+
 :root {
-  --bg-color: #e8e8e8;
-  --text-color:var(--bg-color);
+  --bg-color: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  --text-color: #e8e8e8;
   /* #212121 */
+}
+.toggle_container {
+  height : 90px;
+  width: fit-content;
+  float: right;
+  transform: rotate(90deg);
 }
 /* Not checked */
 .toggle {
-  float: right;
   background-color: rgb(251, 237, 182);
   border-radius: 25% / 50%;
   padding: 0.25em;
