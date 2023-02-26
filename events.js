@@ -1,4 +1,9 @@
-import { isTouchDevice, whatDevice } from "./functions.js";
+import {
+  isStartColor,
+  isTouchDevice,
+  randomColors,
+  whatDevice,
+} from "./functions.js";
 
 const deviceType = whatDevice();
 let stopMovement = null;
@@ -22,18 +27,11 @@ export function startMoving(item) {
       item.initial_X = !isTouchDevice() ? e.clientX : e.touches[0].clientX;
       item.initial_Y = !isTouchDevice() ? e.clientY : e.touches[0].clientY;
       item.moving = true;
-      if (
-        getComputedStyle(item, null).getPropertyValue("background-color") ===
-        "rgb(255, 255, 255)"
-      ) {
-        item.style.backgroundColor =
-          "#" + Math.floor(Math.random() * 16777215).toString(16);
-      }
+      !isStartColor(item) ? console.log("hasColor") : randomColors(item) ;
     },
     { passive: true }
   );
 }
-
 export function moving(item) {
   item.addEventListener(
     events[deviceType].move,
