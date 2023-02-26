@@ -2,12 +2,17 @@ import { DraggableItem } from "./class.js";
 import { removeLastItem } from "./functions.js";
 import { changeTheme } from "./assets/theme.js";
 
-document.querySelector(".add").addEventListener("click", (e) => {
-  new DraggableItem(document.querySelector(".playground"));
+const items = [];
+const generator = document.querySelector(".playground");
+
+document.querySelector(".add").addEventListener("click", () => {
+  const item = new DraggableItem(generator);
+  items.push(item);  
 });
-document.querySelector(".delete").addEventListener("click", (e) => {
-  removeLastItem();
+  document.querySelector(".delete").addEventListener("click", () => {
+  removeLastItem(items);
 });
-document.querySelector("#theme").addEventListener("change", (e) => {
+document.querySelector("#theme").addEventListener("change", () => {
   changeTheme();
 });
+
