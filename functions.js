@@ -22,7 +22,7 @@ export function isTouchDevice() {
 export function itemElement(parent, element) {
   element.className = "draggable-item -commun -flex -noSelectText";
   element.id = "draggable-item";
-  element.textContent = "Drag me";
+  element.textContent = "O";
   parent.append(element);
 }
 export function eventElement(element) {
@@ -31,6 +31,25 @@ export function eventElement(element) {
   endMoving(element);
   //setupEvent
 }
-export function removeLastItem() {
-  document.querySelector(".draggable-item").remove();
+export function removeLastItem(items) {
+  try {
+    document.querySelector(".draggable-item").remove();
+    items.pop();
+  } catch (e) {
+    console.log("There's no item to remove...", { e });
+  }
+}
+export function randomColors(item) {
+  const r = Math.floor(Math.random() * 255);
+  const g = Math.floor(Math.random() * 255);
+  const b = Math.floor(Math.random() * 255);
+  const a = 0.7;
+  item.style.backgroundColor = `rgb(${r},${g},${b},${a})`;
+  item.style.borderColor = `rgb(${r},${g},${b},${1})`;
+}
+export function isStartColor(item) {
+  if (getComputedStyle(item, null).getPropertyValue("background-color") === "rgb(255, 255, 255)"){
+    return true
+  };return
+    
 }
