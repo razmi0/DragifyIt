@@ -3,7 +3,7 @@ export function changeTheme() {
   
 }
 function darkTheme() {
-  document.documentElement.style.setProperty("--bg-color" , "linear-gradient( 135deg, #F05F57 10%, #360940 100%)");
+  document.documentElement.style.setProperty("--bg-color" , "linear-gradient( 200deg, #F05F57 10%, #360940 100%)");
   // document.nav.style.setProperty("--bg-color-nav-dark" , "--bg-color-nav-light");
 }
 function lightTheme() {
